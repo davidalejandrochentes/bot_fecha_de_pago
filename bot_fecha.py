@@ -15,11 +15,11 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # CONFIGURACIÓN - TUS DATOS
-BOT_TOKEN = "7873505067:AAG7aeM7BKHI8cnH_7ztSddCE3N07dm9In8"
-CHAT_ID = "-1002712341833"
+BOT_TOKEN = "..."
+CHAT_ID = "..."
 
-DAVID_TRON_TRC20 = "TSVgxtNpWpdKww68NHZPR4AHx8r2nDvKA6"
-DAVID_ETHEREUM_ERC20 = "0xd8d1ca8b1d7236b338fc370ad677ff2e7131759b"
+DAVID_TRON_TRC20 = "..."
+DAVID_ETHEREUM_ERC20 = "..."
 
 # Crear instancia del bot
 bot = Bot(token=BOT_TOKEN)

@@ -1,92 +1,117 @@
-# 🤖 Bot de Telegram - Notificaciones de Pago Automáticas
+<div align="center">
+  <img src="https://raw.githubusercontent.com/David-Che/Resources-Git/main/bots/notificaciones-de-pago/logo.png" alt="Project Logo" width="150">
+  <h1 align="center">🤖 Bot de Notificaciones de Pago para Telegram</h1>
+  <p align="center">
+    Un bot de Telegram eficiente y automatizado que te recordará las fechas de pago importantes, asegurando que nunca más te olvides de una transacción.
+  </p>
+  <p align="center">
+    <img src="https://img.shields.io/badge/Python-3.7%2B-blue?style=for-the-badge&logo=python" alt="Python Version">
+    <img src="https://img.shields.io/github/last-commit/David-Che/bot_telegram_fecha?style=for-the-badge" alt="Last Commit">
+  </p>
+</div>
 
-Bot de Telegram desarrollado en Python que envía notificaciones automáticas de recordatorios y fechas de pago cada 15 días (día 15 y último día de cada mes).
+---
 
-## 📋 Descripción
+## 🌟 Descripción
 
-Este bot está diseñado para automatizar las notificaciones de pago con la siguiente lógica:
+Este bot de Telegram, desarrollado en Python, está diseñado para enviar notificaciones automáticas en fechas de pago clave. Su lógica se centra en dos momentos importantes del mes: el día 15 y el último día.
 
-- **Día 14**: Recordatorio de que mañana (día 15) toca pagar
-- **Día 15**: Notificación de que HOY toca pagar
-- **Penúltimo día del mes**: Recordatorio de que mañana (último día) toca pagar
-- **Último día del mes**: Notificación de que HOY toca pagar
+- **Día 14**: Envía un recordatorio de que el pago es mañana (día 15).
+- **Día 15**: Envía una notificación de que el pago es HOY.
+- **Penúltimo día del mes**: Envía un recordatorio de que el pago es mañana (último día).
+- **Último día del mes**: Envía una notificación de que el pago es HOY.
 
-## 🚀 Características
+## ✨ Características Principales
 
-- ✅ **Detección automática** de fechas de pago (día 15 y último día del mes)
-- ✅ **Cálculo dinámico** del último día de cada mes (maneja 28, 29, 30 y 31 días)
-- ✅ **Mensajes diferenciados** para recordatorios vs. días de pago
-- ✅ **Múltiples wallets** (TRC20 y ERC20)
-- ✅ **Sistema de pruebas** integrado
-- ✅ **Logging** completo de actividades
-- ✅ **Ejecución automática** diaria
+- 📅 **Detección Automática de Fechas**: Identifica automáticamente los días 14, 15, penúltimo y último de cada mes.
+- 🗓️ **Cálculo Dinámico**: Maneja sin problemas meses con 28, 29, 30 o 31 días.
+- 💬 **Mensajes Personalizados**: Envía mensajes diferentes para recordatorios y días de pago.
+- 💼 **Soporte para Múltiples Wallets**: Configurado para mostrar direcciones de TRC20 y ERC20.
+- 🧪 **Modo de Pruebas Integrado**: Permite probar cada tipo de notificación de forma manual.
+- 📈 **Logging de Actividad**: Registra todas las acciones para un seguimiento sencillo.
+- ⏰ **Ejecución Programada**: Se ejecuta automáticamente todos los días a una hora configurable.
 
-## 📦 Instalación
+## 🚀 Puesta en Marcha
+
+Sigue estos pasos para tener tu bot funcionando en minutos.
 
 ### Prerrequisitos
 
-- Python 3.7 o superior
-- Una cuenta de Telegram
-- Acceso para crear bots de Telegram
+- Python 3.7 o superior.
+- Una cuenta de Telegram.
 
-### 1. Clonar el proyecto
+### 1. Clonar el Repositorio
 
 ```bash
-git clone <url-del-repositorio>
+git clone https://github.com/David-Che/bot_telegram_fecha.git
 cd bot_telegram_fecha
 ```
 
-### 2. Crear entorno virtual
+### 2. Configurar el Entorno Virtual
+
+Es una buena práctica usar un entorno virtual para aislar las dependencias del proyecto.
 
 ```bash
+# Crear el entorno
 python -m venv venv
 
-# Windows
+# Activar en Windows
 venv\Scripts\activate
 
-# Mac/Linux
+# Activar en macOS/Linux
 source venv/bin/activate
 ```
 
-### 3. Instalar dependencias
+### 3. Instalar Dependencias
+
+Instala todas las librerías necesarias con un solo comando:
 
 ```bash
-pip install python-telegram-bot schedule
+pip install -r requirements.txt
 ```
 
-### 4. Configuración del Bot de Telegram
+### 4. Configurar tus Credenciales
 
-#### Crear el Bot:
-1. Busca **@BotFather** en Telegram
-2. Envía `/newbot`
-3. Sigue las instrucciones para crear tu bot
-4. Guarda el **token** que te proporciona
+Antes de ejecutar el bot, necesitas configurarlo con tus propios datos.
 
-#### Obtener tu Chat ID:
-1. Envía cualquier mensaje a tu bot
-2. Visita: `https://api.telegram.org/bot<TU_TOKEN>/getUpdates`
-3. Busca tu Chat ID en la respuesta JSON
+#### a. Crear un Bot en Telegram
+1.  Abre Telegram y busca a **@BotFather**.
+2.  Envía el comando `/newbot` y sigue sus instrucciones.
+3.  Al finalizar, **guarda el token** que te proporcionará.
 
-### 5. Configurar el archivo
+#### b. Obtener tu Chat ID
+1.  Busca el bot que acabas de crear en Telegram y envíale un mensaje.
+2.  Abre tu navegador y visita la siguiente URL (reemplaza `<TU_TOKEN>` con tu token):
+    ```
+    https://api.telegram.org/bot<TU_TOKEN>/getUpdates
+    ```
+3.  En la respuesta, busca el `id` dentro del objeto `chat`. Ese es tu `CHAT_ID`.
 
-Edita las siguientes variables en `bot_fecha.py`:
+#### c. Actualizar el Script
+Abre el archivo `bot_fecha.py` y modifica las siguientes variables con tus datos:
 
 ```python
-BOT_TOKEN = "tu_token_aqui"
-CHAT_ID = "tu_chat_id_aqui"
-DAVID_TRON_TRC20 = "tu_wallet_trc20"
-DAVID_ETHEREUM_ERC20 = "tu_wallet_erc20"
+# CONFIGURACIÓN - TUS DATOS
+BOT_TOKEN = "7873505067:AAG7aeM7BKHI8cnH_7ztSddCE3N07dm9In8" # ⬅️ Pega tu token aquí
+CHAT_ID = "-1002712341833" # ⬅️ Pega tu Chat ID aquí
+
+DAVID_TRON_TRC20 = "TSVgxtNpWpdKww68NHZPR4AHx8r2nDvKA6" # ⬅️ Tu wallet TRC20
+DAVID_ETHEREUM_ERC20 = "0xd8d1ca8b1d7236b338fc370ad677ff2e7131759b" # ⬅️ Tu wallet ERC20
 ```
 
-## 🎯 Uso
+## ▶️ Cómo Usar el Bot
 
-### Modo de Prueba
+Puedes ejecutar el bot de dos maneras: en modo de prueba o en modo de producción.
+
+### Modo de Prueba (Interactivo)
+
+Este modo es ideal para verificar que todo funciona correctamente.
 
 ```bash
 python bot_fecha.py
 ```
 
-Aparecerá un menú con las siguientes opciones:
+Verás un menú interactivo que te permitirá probar cada tipo de notificación:
 
 ```
 🧪 MODO DE PRUEBA
@@ -99,165 +124,66 @@ Selecciona una opción:
 6. Ejecutar bot en modo normal
 ```
 
-### Modo Automático
+### Modo de Producción (Automático)
 
-Selecciona la **opción 6** para que el bot se ejecute automáticamente y envíe notificaciones todos los días a las 8:00 AM (solo en las fechas correspondientes).
+Para que el bot se ejecute de forma continua y envíe las notificaciones automáticamente, elige la **opción 6**.
 
-## 📱 Tipos de Mensajes
-
-### Recordatorio (Día 14)
 ```
-⚠️ RECORDATORIO DE PAGO
-
-👤 David A. Chentes
-
-🚨 MAÑANA (15) TOCA PAGAR 🚨
-
-💰 MONTO ➡️ 400 USDT
-
-🌐 RED ➡️ TRC20
-💎 WALLET ➡️ TSVgxtNpWpdKww68NHZPR4AHx8r2nDvKA6
-
-🌐 RED ➡️ ERC20
-💎 WALLET ➡️ 0xd8d1ca8b1d7236b338fc370ad677ff2e7131759b
-
-📅 FECHA LÍMITE DE PAGO ➡️ 15/08/2025
+🤖 Bot de Notificación de Pago iniciado...
+Notificará los días: 14, 15, penúltimo y último de cada mes
+Presiona Ctrl+C para detener el bot
 ```
+El bot revisará la fecha todos los días a las **08:00 AM**.
 
-### Día de Pago (Día 15)
-```
-🔥 ¡PAGO HOY!
+## ⚙️ Personalización
 
-👤 David A. Chentes
+### Cambiar la Hora de Envío
 
-🚨 HOY TOCA PAGAR 🚨
-
-💰 MONTO ➡️ 400 USDT
-
-🌐 RED ➡️ TRC20
-💎 WALLET ➡️ TSVgxtNpWpdKww68NHZPR4AHx8r2nDvKA6
-
-🌐 RED ➡️ ERC20
-💎 WALLET ➡️ 0xd8d1ca8b1d7236b338fc370ad677ff2e7131759b
-
-📅 FECHA LÍMITE DE PAGO ➡️ 15/08/2025
-```
-
-## ⚙️ Configuración Avanzada
-
-### Cambiar Hora de Envío
-
-Modifica la línea 188 en `bot_fecha.py`:
+Puedes cambiar la hora a la que se envía la notificación modificando esta línea en `bot_fecha.py`:
 
 ```python
-schedule.every().day.at("08:00").do(job)  # Cambiar "08:00" por la hora deseada
+# Programar revisión diaria a las 8:00 AM
+schedule.every().day.at("08:00").do(job)  # Cambia "08:00" a la hora que prefieras (formato 24h)
 ```
 
-### Cambiar Monto
+### Modificar el Mensaje
 
-Modifica la línea correspondiente en las funciones de mensaje:
+El contenido de los mensajes se puede editar directamente en las funciones `enviar_notificacion` y `test_forzado`. Por ejemplo, para cambiar el monto:
 
 ```python
-💰 **MONTO** ➡️ 400 USDT  # Cambiar 400 por el monto deseado
+💰 **MONTO** ➡️ 400 USDT  # Cambia 400 por el nuevo monto
 ```
 
-### Agregar Más Wallets
+## ☁️ Despliegue en un Servidor
 
-Puedes agregar más direcciones de wallet editando las variables al inicio del archivo.
+Para que el bot funcione 24/7, necesitas desplegarlo en un servidor.
 
-## 📁 Estructura del Proyecto
+### Usando `screen` en un VPS
 
-```
-bot_telegram_fecha/
-│
-├── bot_fecha.py          # Archivo principal del bot
-├── README.md            # Este archivo
-└── requirements.txt     # Dependencias (opcional)
-```
+`screen` es una herramienta que te permite mantener procesos corriendo en segundo plano.
 
-## 🚀 Despliegue en Servidor
+1.  Conéctate a tu servidor.
+2.  Inicia una nueva sesión de `screen`:
+    ```bash
+    screen -S bot-telegram
+    ```
+3.  Navega a la carpeta del proyecto, activa el entorno virtual y ejecuta el bot:
+    ```bash
+    cd bot_telegram_fecha
+    source venv/bin/activate
+    python bot_fecha.py
+    # Elige la opción 6
+    ```
+4.  Para salir de la sesión sin detener el bot, presiona `Ctrl+A` y luego `D`.
 
-### Opción 1: VPS/Servidor Propio
-
-1. Sube el archivo a tu servidor
-2. Instala Python y las dependencias
-3. Ejecuta el bot en modo normal (opción 6)
-4. Usa `screen` o `tmux` para mantenerlo ejecutándose:
-
-```bash
-screen -S bot_telegram
-python bot_fecha.py
-# Seleccionar opción 6
-# Ctrl+A, D para desconectar sin cerrar
-```
-
-### Opción 2: Servicios en la Nube
-
-#### Heroku
-1. Crea un `Procfile`: `worker: python bot_fecha.py`
-2. Sube a tu repositorio de Heroku
-3. Configura las variables de entorno
-
-#### Railway/Render
-Similar proceso con sus respectivas configuraciones.
-
-## 🔧 Troubleshooting
-
-### Error de Token
-```
-❌ Error: Unauthorized
-```
-**Solución**: Verifica que el token del bot sea correcto.
-
-### Error de Chat ID
-```
-❌ Error: Chat not found
-```
-**Solución**: Asegúrate de haber enviado al menos un mensaje al bot antes de obtener el Chat ID.
-
-### Bot no envía mensajes
-1. Verifica la fecha actual con las opciones de prueba
-2. Revisa los logs en consola
-3. Confirma que el bot esté ejecutándose en modo normal (opción 6)
-
-## 📝 Logs
-
-El bot genera logs informativos que te ayudan a monitorear su funcionamiento:
-
-```
-2025-08-03 08:00:01 - __main__ - INFO - Notificación enviada: recordatorio_15
-2025-08-03 08:00:01 - __main__ - INFO - Bot funcionando correctamente
-```
+Para volver a la sesión más tarde, usa `screen -r bot-telegram`.
 
 ## 🤝 Contribuciones
 
-Las contribuciones son bienvenidas. Por favor:
+¡Las contribuciones son bienvenidas! Si tienes ideas para mejorar el bot, por favor sigue estos pasos:
 
-1. Fork el proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
-
-## 📄 Licencia
-
-Este proyecto está bajo la Licencia MIT - ver el archivo `LICENSE` para más detalles.
-
-## 📞 Soporte
-
-Si tienes problemas o preguntas:
-
-1. Revisa la sección de Troubleshooting
-2. Verifica que todas las dependencias estén instaladas
-3. Asegúrate de que la configuración sea correcta
-
-## 🔄 Changelog
-
-### v1.0.0
-- ✅ Implementación inicial
-- ✅ Sistema de notificaciones automáticas
-- ✅ Soporte para múltiples wallets
-- ✅ Sistema de pruebas integrado
-- ✅ Detección automática de fechas
-
----
+1.  Haz un **Fork** de este repositorio.
+2.  Crea una nueva rama (`git checkout -b feature/MejoraIncreible`).
+3.  Realiza tus cambios y haz **Commit** (`git commit -m 'Añadir MejoraIncreible'`).
+4.  Haz **Push** a tu rama (`git push origin feature/MejoraIncreible`).
+5.  Abre un **Pull Request**.
